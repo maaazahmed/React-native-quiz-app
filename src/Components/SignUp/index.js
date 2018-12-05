@@ -26,6 +26,21 @@ export default class SignUpComponent extends Component {
                 locations={[0, 0.9, 0.8]}
                 colors={['#d81dc6', '#530bb0']}
                 style={styles.container} >
+
+
+                <View style={[styles.signUpbuttonView, {}]} >
+                    <TouchableOpacity
+                         onPress={() =>this.props.navigation.goBack()}
+                        activeOpacity={0.7}
+                        style={[styles.signUpbutton, {}]} >
+                        {/* <View> */}
+                        < Icon name="angle-left" style={styles.signInbuttonIcon} color="#fff" />
+                        {/* </View> */}
+                        <Text style={styles.signUpbuttonText} >Log In</Text>
+                    </TouchableOpacity>
+                </View>
+
+
                 <View style={[styles.headingContainer, { justifyContent: "flex-end" }]} >
                     <Text style={styles.headingText} >Sign Up</Text>
                 </View>
@@ -100,7 +115,7 @@ export default class SignUpComponent extends Component {
 
                     </View>
                 </View>
-                <View style={styles.signUpbuttonContaier} >
+                {/* <View style={styles.signUpbuttonContaier} >
                     <View style={{ alignItems: "center" }} >
                         <TouchableOpacity activeOpacity={0.5} >
                             <Text style={styles.NotmemberyetText} >Not member yet?</Text>
@@ -114,7 +129,7 @@ export default class SignUpComponent extends Component {
                             <Text style={styles.signUpbuttonText} >Sign Up</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
+                </View> */}
             </LinearGradient >
         );
     }
@@ -125,7 +140,7 @@ const styles = StyleSheet.create({
         flex: 1,
         // height:hp("100%"),
         // width:wp("100%"),
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center',
     },
     headingContainer: {
@@ -234,6 +249,40 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         fontSize: wp("4%"),
         color: "#fff"
+    },
+
+
+
+    signUpbuttonView: {
+        // marginTop: hp("10%"),
+        // backgroundColor: "gray",
+        height: hp("10%"),
+        alignItems:"center",
+        alignSelf:"flex-start",
+        justifyContent:"center",
+        padding:5
+
+    },
+
+    signUpbutton: {
+        height: hp("6%"),
+        width: wp("22%"),
+        justifyContent: "center",
+        flexDirection:"row",
+        justifyContent:"space-around",
+    },
+
+    signUpbuttonText: {
+        alignSelf: "center",
+        fontSize: wp("4%"),
+        color: "#fff",
+        fontWeight: "bold",
+    },
+    signInbuttonIcon:{
+        fontSize: 40,
+        alignSelf: "center",
+
     }
+
 
 });

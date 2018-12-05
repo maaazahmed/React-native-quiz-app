@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity } from 'react-native';
-// https://www.google.com/search?q=quiz+image+for+mobile+background&tbm=isch&tbs=rimg:CcXresItywALIjjsLco1_13rNi7RifONhgYJHEleag8a5msAr1JUqNSrGysp39dKxt0MtWveBTyEunFUmbKhj2RZI5yoSCewtyjX_1es2LEfG0_1ZsPctr1KhIJtGJ842GBgkcRyu9k-0eqCvUqEgkSV5qDxrmawBEGyKafCb4IeCoSCSvUlSo1KsbKEZBMcbn9oW8GKhIJynf10rG3Qy0RcWF4F2p6M9sqEgla94FPIS6cVRHNV3sMiqryBCoSCSZsqGPZFkjnEbXFw1UbRMW0&tbo=u&sa=X&ved=2ahUKEwjo98jy8YbfAhURsHEKHYaOC8YQ9C96BAgBEBs&biw=1242&bih=597&dpr=1.1#imgrc=XdB64OnN07EcTM:
+import { StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {
     widthPercentageToDP as wp,
@@ -22,16 +21,26 @@ export default class SignInComponent extends Component {
 
     render() {
         return (
-            <Transition  appear='horizontal' disappear='horizontal' >
+            <Transition appear='horizontal' disappear='horizontal' >
                 <LinearGradient
                     start={{ x: 0.9, y: 0.2 }}
                     locations={[0, 0.9, 0.8]}
                     colors={['#d81dc6', '#530bb0']}
                     style={styles.container} >
+                    <View style={[styles.signUpbuttonView, { }]} >
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate('SignUpComponent')}
+                            activeOpacity={0.7}
+                            style={[styles.signUpbutton, {}]} >
+                             {/* <View> */}
+                               <Text style={styles.signUpbuttonText} >Sign Up</Text>
+                            {/* </View> */}
+                            < Icon name="angle-right" style={styles.signInbuttonIcon} color="#fff" />
+                        </TouchableOpacity>
+                    </View>
                     <View style={[styles.headingContainer, { justifyContent: "flex-end" }]} >
                         <Text style={styles.headingText} >Log In</Text>
                     </View>
-
                     <View style={styles.inputAndButtonContainer} >
                         <View style={styles.TextInputContainer} >
                             <View style={styles.lableContainer} >
@@ -80,7 +89,7 @@ export default class SignInComponent extends Component {
 
                         </View>
                     </View>
-                    <View style={styles.signUpbuttonContaier} >
+                    {/* <View style={styles.signUpbuttonContaier} >
                         <View style={{ alignItems: "center" }} >
                             <TouchableOpacity activeOpacity={0.5} >
                                 <Text style={styles.NotmemberyetText} >Not member yet?</Text>
@@ -94,7 +103,7 @@ export default class SignInComponent extends Component {
                                 <Text style={styles.signUpbuttonText} >Sign Up</Text>
                             </TouchableOpacity>
                         </View>
-                    </View>
+                    </View> */}
                 </LinearGradient >
             </Transition>
 
@@ -107,8 +116,8 @@ const styles = StyleSheet.create({
         flex: 1,
         // height:hp("100%"),
         // width:wp("100%"),
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
     },
     headingContainer: {
         height: hp("15%"),
@@ -128,15 +137,15 @@ const styles = StyleSheet.create({
         // backgroundColor: "blue",
         justifyContent: "center"
     },
-    signUpbuttonContaier: {
-        // flex: 1,
-        height: hp("35%"),
-        width: wp("100%"),
-        // backgroundColor: "yellow",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        paddingBottom: hp("5%")
-    },
+    // signUpbuttonContaier: {
+    //     // flex: 1,
+    //     height: hp("35%"),
+    //     width: wp("100%"),
+    //     // backgroundColor: "yellow",
+    //     alignItems: "center",
+    //     justifyContent: "flex-end",
+    //     paddingBottom: hp("5%")
+    // },
     headingText: {
         color: "#fff",
         fontSize: 30,
@@ -169,7 +178,8 @@ const styles = StyleSheet.create({
         paddingLeft: 0
     },
     signInbuttonView: {
-        marginTop: hp("4%")
+        marginTop: hp("4%"),
+        // backgroundColor:"red",
     },
     signInbutton: {
         height: hp("6%"),
@@ -200,22 +210,38 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         fontSize: 20
     },
-    NotmemberyetText: {
-        fontSize: 17,
-        color: "#fff"
+    // NotmemberyetText: {
+    //     fontSize: 17,
+    //     color: "#fff"
+    // },
+
+    signUpbuttonView: {
+        // marginTop: hp("10%"),
+        // backgroundColor: "gray",
+        height: hp("10%"),
+        alignItems:"center",
+        alignSelf:"flex-end",
+        justifyContent:"center",
+        padding:5
+
     },
     signUpbutton: {
         height: hp("6%"),
-        width: wp("70%"),
-        borderRadius: width,
+        width: wp("25%"),
         justifyContent: "center",
-        borderColor: "#fff",
-        borderWidth: 1
+        flexDirection:"row",
+        justifyContent:"space-around",
     },
     signUpbuttonText: {
         alignSelf: "center",
         fontSize: wp("4%"),
-        color: "#fff"
+        color: "#fff",
+        fontWeight: "bold",
+    },
+    signInbuttonIcon:{
+        fontSize: 40,
+        alignSelf: "center",
+
     }
 
 });
