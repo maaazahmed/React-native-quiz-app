@@ -1,37 +1,33 @@
 import {
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    QuizList,
+    // StartingQuiz
 } from "./Components"
-import {FluidNavigator} from "react-navigation-fluid-transitions"
-// import { createStackNavigator } from "react-navigation"
-
-
-// const NavigationConfig = () => {
-//     return {
-//         screenInterploator: (screenProps) => {
-//             const position = screenProps.position;
-//             const screen = screenProps.screen;
-//             const index = screen.index
-
-//             return FadeTransition(index, position)
-//         }
-//     }
-// }
-
-// export default Routes = createStackNavigator({
-    // SignInComponent: { screen: SignInComponent },
-    // SignUpComponent: { screen: SignUpComponent },
-// },
-//     { navigationOptions: { header: null } },
-
-// )
+import { FluidNavigator } from "react-navigation-fluid-transitions"
+import { createStackNavigator } from "react-navigation"
 
 
 
-export default Routs = FluidNavigator({
+
+export default Routes = createStackNavigator({
+    QuizList: { screen: QuizList },
+    // StartingQuiz: { screen: StartingQuiz },
     SignInComponent: { screen: SignInComponent },
     SignUpComponent: { screen: SignUpComponent },
-  });
+},
+    { navigationOptions: { header: null } },
+
+)
+
+
+
+// export default Routes = FluidNavigator({
+//     // StartingQuiz: { screen: StartingQuiz },
+//     QuizList: { screen: QuizList },
+//     SignInComponent: { screen: SignInComponent },
+//     SignUpComponent: { screen: SignUpComponent },
+// });
 
 
 

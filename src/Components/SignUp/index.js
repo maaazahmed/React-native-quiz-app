@@ -7,6 +7,8 @@ import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Icon from "react-native-vector-icons/FontAwesome"
+import { Transition } from "react-navigation-fluid-transitions"
+
 
 
 
@@ -15,107 +17,168 @@ export default class SignUpComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            phone: ""
+            username: "",
+            email: "",
+            password: "",
+            confremPass: ""
         }
     }
 
+
+    signUpHeandler() {
+        const { username, email, password, confremPass } = this.state
+        var obj = {
+            username,
+            email,
+            password,
+            confremPass
+        }
+
+        if (username !== "" && email !== "" && password !== "" && confremPass !== "") {
+            if (password === confremPass) {
+                fetch('http://192.168.8.100:8000/SignUp', {
+                    method: 'POST',
+                    body: JSON.stringify(obj),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                }).then((a) => {
+                    var message = JSON.parse(a._bodyInit)
+                    if (message.message === "User Created") {
+                        this.props.navigation.navigate("SignInComponent")
+                    }
+                    else {
+                        alert("Aouthtication failed try again")
+                    }
+                }).catch((error) => {
+                    alert("Aouthtication faild")
+                })
+            }
+            else {
+                alert("password did not match")
+            }
+        }
+        else {
+            alert("Requaired  All Feilds")
+        }
+    }
+
+
+
+
+
     render() {
+        const {
+            username,
+            email,
+            password,
+            confremPass
+        } = this.state
         return (
-            <LinearGradient
-                start={{ x: 0.9, y: 0.2 }}
-                locations={[0, 0.9, 0.8]}
-                colors={['#d81dc6', '#530bb0']}
-                style={styles.container} >
+            <Transition appear='horizontal' disappear='horizontal' >
+                <LinearGradient
+                    start={{ x: 0.9, y: 0.2 }}
+                    locations={[0, 0.9, 0.8]}
+                    colors={['#530bb0', '#d81dc6']}
+                    style={styles.container} >
 
 
-                <View style={[styles.signUpbuttonView, {}]} >
-                    <TouchableOpacity
-                         onPress={() =>this.props.navigation.goBack()}
-                        activeOpacity={0.7}
-                        style={[styles.signUpbutton, {}]} >
-                        {/* <View> */}
-                        < Icon name="angle-left" style={styles.signInbuttonIcon} color="#fff" />
-                        {/* </View> */}
-                        <Text style={styles.signUpbuttonText} >Log In</Text>
-                    </TouchableOpacity>
-                </View>
-
-
-                <View style={[styles.headingContainer, { justifyContent: "flex-end" }]} >
-                    <Text style={styles.headingText} >Sign Up</Text>
-                </View>
-
-                <View style={styles.inputAndButtonContainer} >
-                    <View style={styles.TextInputContainer} >
-                        <View style={styles.lableContainer} >
-                            <Text style={styles.lableText} >Username</Text>
-                        </View>
-                        <View style={[styles.lableContainer, styles.TextInputView]} >
-                            <TextInput
-                                placeholderTextColor="#c1c1c1"
-                                placeholder="Your Name"
-                                style={styles.TextInput} />
-                        </View>
-                    </View>
-                    <View style={[styles.TextInputContainer, styles.inptSpasificStyle]} >
-                        <View style={styles.lableContainer} >
-                            <Text style={styles.lableText} >Email</Text>
-                        </View>
-                        <View style={[styles.lableContainer, styles.TextInputView]} >
-                            <TextInput
-                                placeholderTextColor="#c1c1c1"
-                                placeholder="Your Email"
-                                style={styles.TextInput} />
-                        </View>
-                    </View>
-                    <View style={[styles.TextInputContainer, styles.inptSpasificStyle]} >
-                        <View style={styles.lableContainer} >
-                            <Text style={styles.lableText} >Password</Text>
-                        </View>
-                        <View style={[styles.lableContainer, styles.TextInputView]} >
-                            <TextInput
-                                placeholderTextColor="#c1c1c1"
-                                placeholder="Password"
-                                style={styles.TextInput} />
-                        </View>
-                    </View>
-                    <View style={[styles.TextInputContainer, styles.inptSpasificStyle]} >
-                        <View style={styles.lableContainer} >
-                            <Text style={styles.lableText} >Confrem Password</Text>
-                        </View>
-                        <View style={[styles.lableContainer, styles.TextInputView]} >
-                            <TextInput
-                                placeholderTextColor="#c1c1c1"
-                                placeholder="Confrem Password"
-                                style={styles.TextInput} />
-                        </View>
-                    </View>
-                    <View style={styles.signInbuttonView}  >
+                    <View style={[styles.signUpbuttonView, {}]} >
                         <TouchableOpacity
+                            onPress={() => this.props.navigation.goBack()}
                             activeOpacity={0.7}
-                            style={styles.signInbutton} >
-                            <Text style={styles.signInbuttonText} >Log In</Text>
+                            style={[styles.signUpbutton, {}]} >
+                            < Icon name="angle-left" style={styles.signInbuttonIcon} color="#fff" />
+                            <Text style={styles.signUpbuttonText} >Log In</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
 
 
-                <View style={styles.FBandGOOGLEbuttonContainer} >
-                    <View style={styles.FBandGOOGLEbuttonContent} >
-                        <TouchableOpacity
-                            activeOpacity={0.7}
-                            style={styles.FBandGOOGLEbutton}>
-                            < Icon name="facebook-f" style={styles.FBandGOOGLEIcon} color="#fff" />
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={0.7}
-                            style={styles.FBandGOOGLEbutton}>
-                            < Icon name="google" style={styles.FBandGOOGLEIcon} color="#fff" />
-                        </TouchableOpacity>
-
+                    <View style={[styles.headingContainer, { justifyContent: "flex-end" }]} >
+                        <Text style={styles.headingText} >Sign Up</Text>
                     </View>
-                </View>
-                {/* <View style={styles.signUpbuttonContaier} >
+
+                    <View style={styles.inputAndButtonContainer} >
+                        <View style={styles.TextInputContainer} >
+                            <View style={styles.lableContainer} >
+                                <Text style={styles.lableText} >Username</Text>
+                            </View>
+                            <View style={[styles.lableContainer, styles.TextInputView]} >
+                                <TextInput
+                                    placeholderTextColor="#c1c1c1"
+                                    placeholder="Your Name"
+                                    value={username}
+                                    onChangeText={(username) => { this.setState({ username }) }}
+                                    style={styles.TextInput} />
+                            </View>
+                        </View>
+                        <View style={[styles.TextInputContainer, styles.inptSpasificStyle]} >
+                            <View style={styles.lableContainer} >
+                                <Text style={styles.lableText} >Email</Text>
+                            </View>
+                            <View style={[styles.lableContainer, styles.TextInputView]} >
+                                <TextInput
+                                    placeholderTextColor="#c1c1c1"
+                                    placeholder="Your Email"
+                                    value={email}
+                                    onChangeText={(email) => { this.setState({ email }) }}
+                                    style={styles.TextInput} />
+                            </View>
+                        </View>
+                        <View style={[styles.TextInputContainer, styles.inptSpasificStyle]} >
+                            <View style={styles.lableContainer} >
+                                <Text style={styles.lableText} >Password</Text>
+                            </View>
+                            <View style={[styles.lableContainer, styles.TextInputView]} >
+                                <TextInput
+                                    placeholderTextColor="#c1c1c1"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChangeText={(password) => { this.setState({ password }) }}
+                                    style={styles.TextInput} />
+                            </View>
+                        </View>
+                        <View style={[styles.TextInputContainer, styles.inptSpasificStyle]} >
+                            <View style={styles.lableContainer} >
+                                <Text style={styles.lableText} >Confrem Password</Text>
+                            </View>
+                            <View style={[styles.lableContainer, styles.TextInputView]} >
+                                <TextInput
+                                    placeholderTextColor="#c1c1c1"
+                                    placeholder="Confrem Password"
+                                    value={confremPass}
+                                    onChangeText={(confremPass) => { this.setState({ confremPass }) }}
+                                    style={styles.TextInput} />
+                            </View>
+                        </View>
+                        <View style={styles.signInbuttonView}  >
+                            <TouchableOpacity
+                                onPress={this.signUpHeandler.bind(this)}
+                                activeOpacity={0.7}
+                                style={styles.signInbutton} >
+                                <Text style={styles.signInbuttonText} >Log In</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+
+                    <View style={styles.FBandGOOGLEbuttonContainer} >
+                        <View style={styles.FBandGOOGLEbuttonContent} >
+                            <TouchableOpacity
+                                activeOpacity={0.7}
+                                style={styles.FBandGOOGLEbutton}>
+                                < Icon name="facebook-f" style={styles.FBandGOOGLEIcon} color="#fff" />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={0.7}
+                                style={styles.FBandGOOGLEbutton}>
+                                < Icon name="google" style={styles.FBandGOOGLEIcon} color="#fff" />
+                            </TouchableOpacity>
+
+                        </View>
+                    </View>
+                    {/* <View style={styles.signUpbuttonContaier} >
                     <View style={{ alignItems: "center" }} >
                         <TouchableOpacity activeOpacity={0.5} >
                             <Text style={styles.NotmemberyetText} >Not member yet?</Text>
@@ -130,7 +193,8 @@ export default class SignUpComponent extends Component {
                         </TouchableOpacity>
                     </View>
                 </View> */}
-            </LinearGradient >
+                </LinearGradient >
+            </Transition>
         );
     }
 }
@@ -257,10 +321,10 @@ const styles = StyleSheet.create({
         // marginTop: hp("10%"),
         // backgroundColor: "gray",
         height: hp("10%"),
-        alignItems:"center",
-        alignSelf:"flex-start",
-        justifyContent:"center",
-        padding:5
+        alignItems: "center",
+        alignSelf: "flex-start",
+        justifyContent: "center",
+        padding: 5
 
     },
 
@@ -268,8 +332,8 @@ const styles = StyleSheet.create({
         height: hp("6%"),
         width: wp("22%"),
         justifyContent: "center",
-        flexDirection:"row",
-        justifyContent:"space-around",
+        flexDirection: "row",
+        justifyContent: "space-around",
     },
 
     signUpbuttonText: {
@@ -278,7 +342,7 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontWeight: "bold",
     },
-    signInbuttonIcon:{
+    signInbuttonIcon: {
         fontSize: 40,
         alignSelf: "center",
 

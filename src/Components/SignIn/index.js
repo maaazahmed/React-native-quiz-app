@@ -15,11 +15,51 @@ export default class SignInComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            phone: ""
+            email: "",
+            password: "",
         }
     }
 
+
+
+    signInHeandler() {
+        const { email, password } = this.state
+        var obj = {
+            email,
+            password,
+        }
+        if (email !== "" && password !== "") {
+            fetch('http://192.168.8.100:8000/SignIn', {
+                method: 'POST',
+                body: JSON.stringify(obj),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }).then((a) => {
+                var message = JSON.parse(a._bodyInit)
+                if (message.message === "Login Successful") {
+                    this.props.navigation.navigate("QuizList")
+                }
+                else {
+                    alert("Aouthtication failed try again")
+                }
+            }).catch((error) => {
+                alert("faild")
+            })
+
+        }
+        else {
+            alert("Requaired  All Feilds")
+        }
+    }
+
+
     render() {
+        const {
+            email,
+            password,
+        } = this.state
         return (
             <Transition appear='horizontal' disappear='horizontal' >
                 <LinearGradient
@@ -27,13 +67,13 @@ export default class SignInComponent extends Component {
                     locations={[0, 0.9, 0.8]}
                     colors={['#d81dc6', '#530bb0']}
                     style={styles.container} >
-                    <View style={[styles.signUpbuttonView, { }]} >
+                    <View style={[styles.signUpbuttonView, {}]} >
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate('SignUpComponent')}
                             activeOpacity={0.7}
                             style={[styles.signUpbutton, {}]} >
-                             {/* <View> */}
-                               <Text style={styles.signUpbuttonText} >Sign Up</Text>
+                            {/* <View> */}
+                            <Text style={styles.signUpbuttonText} >Sign Up</Text>
                             {/* </View> */}
                             < Icon name="angle-right" style={styles.signInbuttonIcon} color="#fff" />
                         </TouchableOpacity>
@@ -50,6 +90,8 @@ export default class SignInComponent extends Component {
                                 <TextInput
                                     placeholderTextColor="#c1c1c1"
                                     placeholder="Your Email"
+                                    value={email}
+                                    onChangeText={(email) => { this.setState({ email }) }}
                                     style={styles.TextInput} />
                             </View>
                         </View>
@@ -60,12 +102,15 @@ export default class SignInComponent extends Component {
                             <View style={[styles.lableContainer, styles.TextInputView]} >
                                 <TextInput
                                     placeholderTextColor="#c1c1c1"
-                                    placeholder="Your Email"
+                                    placeholder="Your Password"
+                                    value={password}
+                                    onChangeText={(password) => { this.setState({ password }) }}
                                     style={styles.TextInput} />
                             </View>
                         </View>
                         <View style={styles.signInbuttonView}  >
                             <TouchableOpacity
+                                onPress={this.signInHeandler.bind(this)}
                                 activeOpacity={0.7}
                                 style={styles.signInbutton} >
                                 <Text style={styles.signInbuttonText} >Log In</Text>
@@ -219,18 +264,18 @@ const styles = StyleSheet.create({
         // marginTop: hp("10%"),
         // backgroundColor: "gray",
         height: hp("10%"),
-        alignItems:"center",
-        alignSelf:"flex-end",
-        justifyContent:"center",
-        padding:5
+        alignItems: "center",
+        alignSelf: "flex-end",
+        justifyContent: "center",
+        padding: 5
 
     },
     signUpbutton: {
         height: hp("6%"),
         width: wp("25%"),
         justifyContent: "center",
-        flexDirection:"row",
-        justifyContent:"space-around",
+        flexDirection: "row",
+        justifyContent: "space-around",
     },
     signUpbuttonText: {
         alignSelf: "center",
@@ -238,7 +283,7 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontWeight: "bold",
     },
-    signInbuttonIcon:{
+    signInbuttonIcon: {
         fontSize: 40,
         alignSelf: "center",
 
