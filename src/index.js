@@ -2,7 +2,8 @@ import {
     SignInComponent,
     SignUpComponent,
     QuizList,
-    // StartingQuiz
+    StartingQuiz,
+    QuizDiscription
 } from "./Components"
 import { FluidNavigator } from "react-navigation-fluid-transitions"
 import { createStackNavigator } from "react-navigation"
@@ -12,7 +13,8 @@ import { createStackNavigator } from "react-navigation"
 
 export default Routes = createStackNavigator({
     QuizList: { screen: QuizList },
-    // StartingQuiz: { screen: StartingQuiz },
+    QuizDiscription: { screen: QuizDiscription },
+    StartingQuiz: { screen: StartingQuiz },
     SignInComponent: { screen: SignInComponent },
     SignUpComponent: { screen: SignUpComponent },
 },

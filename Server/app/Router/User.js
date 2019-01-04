@@ -175,7 +175,10 @@ router.post("/createQuiz", (req, res) => {
     })
 })
 
+
+
 router.get("/quizList", (req, res) => {
+    console.log("", res)
     Quiz.find((err, succ) => {
         console.log(succ)
         if (succ) {
@@ -191,6 +194,12 @@ router.get("/quizList", (req, res) => {
         }
     })
 })
+
+
+
+
+
+
 
 router.get("/getQuestion", (req, res) => {
     Quiz.findOne({ _id: req.body.id }, (err, success) => {

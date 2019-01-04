@@ -7,7 +7,7 @@ import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import axios from "axios"
-import { QuizListAction } from "../../store/action/action"
+import { QuizListAction, AboutQuizAction } from "../../store/action/action"
 import { connect } from "react-redux"
 
 
@@ -18,8 +18,9 @@ const { width, height } = Dimensions.get("window")
 
  class QuizList extends Component {
     componentDidMount() {
-        axios.get("http://192.168.8.100:8000/quizList")
+        axios.get("http://192.168.100.101:8000/quizList")
         .then((res) => {
+            console.log(res.data)
             this.props.QuizListAction(res.data)
             }).catch((err) => {
                 console.log(err, "___________________")
@@ -29,14 +30,15 @@ const { width, height } = Dimensions.get("window")
 
     joinQuiz(data) {
         console.log(data)
+        this.props.AboutQuizAction(data)
+        this.props.navigation.navigate("QuizDiscription")
     }
 
 
     render() {
-       
         return (
             <Transition appear='horizontal' disappear='horizontal' >
-                <View style={{ flex: 1 }} >
+                <View style={{ flex: 1, backgroundColor:"#fff" }} >
                     <LinearGradient
                         start={{ x: 2, y: 2 }}
                         locations={[0, 1, 1]}
@@ -151,6 +153,10 @@ const mapDispatchToProp = (dispatch) => {
         QuizListAction: (data) => {
             dispatch(QuizListAction(data))
         },
+        AboutQuizAction: (data) => {
+            dispatch(AboutQuizAction(data))
+        },
+        
     };
 };
 
