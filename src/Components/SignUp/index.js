@@ -36,7 +36,7 @@ export default class SignUpComponent extends Component {
 
         if (username !== "" && email !== "" && password !== "" && confremPass !== "") {
             if (password === confremPass) {
-                fetch('http://192.168.8.100:8000/SignUp', {
+                fetch('http://192.168.100.113:8000/SignUp', {
                     method: 'POST',
                     body: JSON.stringify(obj),
                     headers: {

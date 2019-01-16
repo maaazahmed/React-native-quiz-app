@@ -1,217 +1,3 @@
-// import React, { Component } from 'react';
-// import { StyleSheet, View, Text, Dimensions, Image, FlatList, TouchableOpacity , Button} from 'react-native';
-// import { Transition } from "react-navigation-fluid-transitions"
-// import LinearGradient from 'react-native-linear-gradient';
-// import {
-//     widthPercentageToDP as wp,
-//     heightPercentageToDP as hp,
-// } from 'react-native-responsive-screen';
-// import { Container, Header, Content, ListItem, Radio, Right, Left } from 'native-base';
-
-
-
-
-// const { width, height } = Dimensions.get("window")
-
-
-
-// const test = [
-//     {
-//         Question: "1Which element use in create main heading",
-//         option_1: "<div/>",
-//         option_2: "<P/>",
-//         option_3: "<h1/>",
-//         option_4: "None of thees"
-//     },
-//     {
-//         Question: "2Which element use in create main heading",
-//         option_1: "<div/>",
-//         option_2: "<P/>",
-//         option_3: "<h1/>",
-//         option_4: "None of thees"
-//     },
-//     {
-//         Question: "2Which element use in create main heading",
-//         option_1: "<div/>",
-//         option_2: "<P/>",
-//         option_3: "<h1/>",
-//         option_4: "None of thees"
-//     },
-//     {
-//         Question: "Which element use in create main heading",
-//         option_1: "<div/>",
-//         option_2: "<P/>",
-//         option_3: "<h1/>",
-//         option_4: "None of thees"
-//     },
-//     {
-//         Question: "Which element use in create main heading",
-//         option_1: "<div/>",
-//         option_2: "<P/>",
-//         option_3: "<h1/>",
-//         option_4: "None of thees"
-//     },
-//     {
-//         Question: "Which element use in create main heading",
-//         option_1: "<div/>",
-//         option_2: "<P/>",
-//         option_3: "<h1/>",
-//         option_4: "None of thees"
-//     },
-
-
-// ]
-
-
-
-// export default class StartingQuiz extends Component {
-
-//     constructor() {
-//         super()
-//         this.state = {
-//             counter: 0,
-//             Question: test[0],
-//             option_1: test[0],
-//             option_2: test[0],
-//             option_3: test[0],
-//             option_4: test[0],
-//         }
-//     }
-
-//     next() {
-
-
-//     }
-
-
-
-
-//     render() {
-//         return (
-//             <Transition appear='horizontal' disappear='horizontal' >
-//                 <View style={{ flex: 1 }} >
-//                     <LinearGradient
-//                         start={{ x: 2, y: 2 }}
-//                         locations={[0, 1, 1]}
-//                         colors={['#530bb0', '#d81dc6']}
-//                         style={styles.container}>
-//                         <View style={{ flex: 1, padding: 10, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} >
-//                             <View>
-//                                 <Text style={{ color: "#fff", fontSize: 20, fontWeight: "500" }} >Question:3</Text>
-//                             </View>
-//                             <TouchableOpacity activeOpacity={0.5} >
-//                                 <Text style={{ color: "#fff", fontSize: 20, fontWeight: "500" }} >50:02</Text>
-//                             </TouchableOpacity>
-//                         </View>
-//                     </LinearGradient>
-//                     <View style={{ backgroundColor: "green", }} >
-//                         <View>
-//                             <Text>sssssssssssssssssssss</Text>
-//                         </View>
-//                         <View  >
-//                             <View style={{ flexDirection: "row" }} >
-//                                 <View>
-//                                     <Radio
-//                                         color={"#d81dc6"}
-//                                         selectedColor={"#d81dc6"}
-//                                         selected={false}
-//                                     />
-//                                 </View>
-//                                 <View ><Text> option 1</Text></View>
-//                             </View>
-//                             <View style={{ flexDirection: "row" }} >
-//                                 <View>
-//                                     <Radio
-//                                         color={"#d81dc6"}
-//                                         selectedColor={"#d81dc6"}
-//                                         selected={false}
-//                                     />
-//                                 </View>
-//                                 <View ><Text> option 1</Text></View>
-//                             </View>
-//                         </View>
-//                     </View>
-//                     <Button title="click" onPress={this.next.bind(this)} />
-//                 </View>
-//             </Transition >
-//         );
-//     }
-// }
-
-// const styles = StyleSheet.create({
-//     container: {
-//         // flex: 1,
-//         // backgroundColor: "green",
-//         height: 70,
-//     },
-
-// });
-
-
-// import React, { Component } from 'react';
-// import {
-//     StyleSheet,
-//     View,
-//     Text,
-//     Dimensions,
-//     Image,
-//     FlatList,
-//     TouchableOpacity,
-// } from 'react-native';
-// import { Transition } from "react-navigation-fluid-transitions"
-// import LinearGradient from 'react-native-linear-gradient';
-// import {
-//     widthPercentageToDP as wp,
-//     heightPercentageToDP as hp,
-// } from 'react-native-responsive-screen';
-// import { Container, Header, Content, ListItem, Radio, Right, Left } from 'native-base';
-
-
-
-// class StartingQuiz extends Component {
-//     render() {
-//         return (
-//             <Transition appear='horizontal' disappear='horizontal' >
-//                 <LinearGradient
-//                     start={{ x: 0.9, y: 0.2 }}
-//                     locations={[0, 0.9, 0.8]}
-//                     colors={['#d81dc6', '#530bb0']}
-//                     style={styles.container} >
-//                     <View style={{ backgroundColor: "#fff" }} >
-//                     </View>
-//                 </LinearGradient>
-//             </Transition>
-//         )
-//     }
-// }
-
-
-// export default StartingQuiz
-
-
-
-// const styles = StyleSheet.create({
-//     container:{
-//         flex:1,      
-//     }
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -221,6 +7,8 @@ import {
     Image,
     FlatList,
     TouchableOpacity,
+    Animated,
+    Easing
 } from 'react-native';
 import { Transition } from "react-navigation-fluid-transitions"
 import LinearGradient from 'react-native-linear-gradient';
@@ -228,27 +16,215 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Container, Header, Content, ListItem, Radio, Right, Left } from 'native-base';
 import { connect } from "react-redux"
+import TimerMachine from 'react-timer-machine'
+import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
+import PercentageCircle from 'react-native-percentage-circle';
 
 
+
+
+const { width, height } = Dimensions.get("window")
 class StartingQuiz extends Component {
-    constructor(){
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-
+            option_1: false,
+            option_2: false,
+            option_3: false,
+            option_4: false,
+            selectedOption: "",
+            counter: 0,
+            slideLeft: new Animated.Value(0),
+            opacity: new Animated.Value(0),
+            opacity2: new Animated.Value(0),
+            zIndex: new Animated.Value(0),
+            minuts: this.props.quiz_Discription.aboutQuiz.aboutQuiz.time,
+            markofaQuistion: 0,
+            incrementerMarcks: this.props.quiz_Discription.aboutQuiz.aboutQuiz.markofaQuistion,
+            secondTime: 0,
+            score: 0,
+            isResultGenerating: false
         }
     }
+
+
+
+    getSecond() {
+        return ("0" + this.state.secondTime % 60).slice(-2)
+    }
+
+    getMinuts() {
+        return Math.floor(this.state.secondTime / 60)
+    }
+
+
+
+    componentWillMount() {
+        this.incrementer = setInterval(() => {
+            this.setState({
+                secondTime: this.state.secondTime + 1
+            })
+        }, 1000)
+        // console.log(Math.floor((this.state.markofaQuistion * 100) / this.props.quiz_Discription.aboutQuiz.aboutQuiz.totalMarks),"MMaz")
+    }
+
+    selectOption(option, selectedOption) {
+        if (option === "option_1") {
+            this.setState({
+                option_1: true,
+                option_2: false,
+                option_3: false,
+                option_4: false,
+            })
+        }
+        if (option === "option_2") {
+            this.setState({
+                option_1: false,
+                option_2: true,
+                option_3: false,
+                option_4: false,
+            })
+        }
+        if (option === "option_3") {
+            this.setState({
+                option_1: false,
+                option_2: false,
+                option_3: true,
+                option_4: false,
+            })
+        }
+        if (option === "option_4") {
+            this.setState({
+                option_1: false,
+                option_2: false,
+                option_3: false,
+                option_4: true,
+            })
+        }
+        this.setState({
+            selectedOption: selectedOption
+        })
+    }
+
+    nextQuiz() {
+        const currentUser = this.props.currentUser.currentUser;
+        console.log(currentUser,"curren------------------tUser")
+        const { counter, slideLeft, opacity, selectedOption, markofaQuistion, incrementerMarcks } = this.state
+        const quiz = this.props.quiz_Question.quizQuestions
+        if (quiz.length - 1 > counter) {
+            Animated.parallel([
+                Animated.timing(slideLeft, {
+                    toValue: 1,
+                    duration: 500
+                }),
+                Animated.timing(opacity, {
+                    toValue: 1,
+                    duration: 500
+                })
+            ]).start(() => {
+                this.setState({
+                    counter: counter + 1,
+                    slideLeft: new Animated.Value(0),
+                    opacity: new Animated.Value(0),
+                })
+            })
+        }
+        // console.log(quiz[counter].correctOption, selectedOption)
+        // console.log(Number((markofaQuistion + (incrementerMarcks) * 100) / this.props.quiz_Discription.aboutQuiz.aboutQuiz.totalMarks).toFixed(2))
+        if (quiz[counter].correctOption === selectedOption) {
+            this.setState({
+                // score: this.state.score + 1,
+                // score: Number(((markofaQuistion + incrementerMarcks) * 100) / this.props.quiz_Discription.aboutQuiz.aboutQuiz.totalMarks).toFixed(2),
+                markofaQuistion: markofaQuistion + Number(incrementerMarcks),
+                // markofaQuistion: Number((markofaQuistion + (incrementerMarcks) * 100) / this.props.quiz_Discription.aboutQuiz.aboutQuiz.totalMarks).toFixed(2),
+            })
+        }
+
+        this.setState({
+            selectedOption: "",
+            option_1: false,
+            option_2: false,
+            option_3: false,
+            option_4: false,
+        })
+
+        if (quiz.length - 1 == counter) {
+            this.setState({
+                isResultGenerating: true
+            })
+            setTimeout(() => {
+                // this.setState({
+                //     isResultGenerating: false
+                // })
+                const opacity1 = Animated.timing(this.state.opacity, {
+                    toValue: 0.2,
+                    duration: 300
+                })
+                const opacity2 = Animated.timing(this.state.opacity2, {
+                    toValue: 1,
+                    duration: 300,
+                })
+                Animated.sequence([
+                    opacity1,
+                    opacity2,
+                ]).start()
+                Animated.timing(this.state.zIndex, {
+                    toValue: 1,
+                    duration: 100,
+                }).start(() => {
+         
+                })
+            }, 3000)
+        }
+        // console.log(markofaQuistion)
+        // console.log("Score", (markofaQuistion * 100) / this.props.quiz_Discription.aboutQuiz.aboutQuiz.totalMarks)
+    }
+
+
     render() {
+        const quiz = this.props.quiz_Question.quizQuestions;
         const {
-            discription,
-            markofaQuistion,
-            numberOfQuestion,
-            passingMarks,
-            time,
-            title,
-            totalMarks,
-        } = this.props.quiz_Discrp.aboutQuiz.aboutQuiz;
+            option_1,
+            option_2,
+            option_3,
+            option_4,
+            counter,
+            // minuts,
+            // secondTime,
+            isResultGenerating,
+            markofaQuistion
+        } = this.state;
+        let score = Number(((markofaQuistion * 100) / this.props.quiz_Discription.aboutQuiz.aboutQuiz.totalMarks).toFixed(2))
+        const passScore = Number(this.props.quiz_Discription.aboutQuiz.aboutQuiz.passingMarks)
+
+        let left = this.state.slideLeft.interpolate({
+            inputRange: [0, 0.2, 0.4, 1],
+            outputRange: [0, -1000, 1000, 0]
+        })
+
+        let opacity = this.state.opacity.interpolate({
+            inputRange: [0, 0.2, 0.3, .5, 1],
+            outputRange: [1, 0, 0, 0, 1]
+        })
+
+        let opacity2 = this.state.opacity2.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 1]
+        })
+
+        let zIndex = this.state.zIndex.interpolate({
+            inputRange: [0, 1],
+            outputRange: [-1, 1]
+        })
+
+
+        // const quiz_Discription = this.props.quiz_Discription.aboutQuiz.aboutQuiz
+        // console.log(this.getMinuts() === minuts)
+        // console.log("Score",this.state.score)
+
+
+
         return (
             <Transition appear='horizontal' disappear='horizontal' >
                 <LinearGradient
@@ -256,39 +232,97 @@ class StartingQuiz extends Component {
                     locations={[0, 0.9, 0.8]}
                     colors={['#d81dc6', '#530bb0']}
                     style={styles.container} >
-                    <View style={styles.content} >
-                        <View style={styles.discriptionContainer} >
-                            <Text style={styles.discriptionText} >{discription}</Text>
+                    {(isResultGenerating) ?
+                        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }} >
+                            {/* <View> */}
+                            <DoubleBounce size={20} color="#ffffff" />
+                            <Text style={{ color: "#fff", fontSize: 17 }} >
+                                Result generating...
+                                </Text>
+                            {/* </View> */}
                         </View>
-                        <View style={styles.LineView} />
+                        :
+                        <Animated.View style={{ flex: 1, position: "absolute", left, opacity, width: wp("100%") }} >
+                            <View style={styles.content} >
+                                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: hp("5%") }}  >
+                                    {/* <Text>
+                                    {this.state.markofaQuistion}
+                                </Text> */}
+                                    <View style={{ padding: 3, justifyContent: "center", alignItems: "center", height: "100%" }} >
+                                        <Text style={{ color: "#fff", fontWeight: "500", fontSize: wp("3") }} >{this.getMinuts()}:{this.getSecond()}</Text>
+                                    </View>
+                                    <View style={{ padding: 3, justifyContent: "center", alignItems: "center", height: "100%" }} >
+                                        <Text style={{ color: "#fff", fontWeight: "500", fontSize: wp("3") }} >{counter + 1}</Text>
+                                    </View>
 
-                        <TouchableOpacity style={styles.aboutDiscrs} >
-                            {/* <Text style={styles.discriptionTextTitle} >Total Marks</Text> */}
-                            <Text style={styles.discriptionTextTitle2} >{totalMarks}</Text>
-                        </TouchableOpacity>
-                        <View style={styles.LineView} />
+                                </View>
+                                <View style={styles.discriptionContainer} >
+                                    <View>
+                                        <Text style={styles.discriptionText} >{quiz[counter].question}</Text>
+                                    </View>
+                                </View>
+                                <View style={styles.LineView} />
+                                <TouchableOpacity
+                                    onPress={this.selectOption.bind(this, "option_1", quiz[counter].option_1)}
+                                    style={[styles.aboutDiscrs, option_1 ? styles.activeOption : null]} >
+                                    <Text style={[styles.discriptionTextTitle2, option_1 ? styles.activeOptionText : null]} >{quiz[counter].option_1}</Text>
+                                </TouchableOpacity>
+                                <View style={styles.LineView} />
 
-                        <View style={styles.aboutDiscrs} >
-                            {/* <Text style={styles.discriptionTextTitle} >Questions</Text> */}
-                            <Text style={styles.discriptionTextTitle2} >{numberOfQuestion}</Text>
+                                <TouchableOpacity onPress={this.selectOption.bind(this, "option_2", quiz[counter].option_2)}
+                                    style={[styles.aboutDiscrs, option_2 ? styles.activeOption : null]} >
+                                    <Text style={[styles.discriptionTextTitle2, option_2 ? styles.activeOptionText : null]} >{quiz[counter].option_2}</Text>
+                                </TouchableOpacity>
+                                <View style={styles.LineView} />
+
+                                <TouchableOpacity onPress={this.selectOption.bind(this, "option_3", quiz[counter].option_3)}
+                                    style={[styles.aboutDiscrs, option_3 ? styles.activeOption : null]} >
+                                    <Text style={[styles.discriptionTextTitle2, option_3 ? styles.activeOptionText : null]} >{quiz[counter].option_3}</Text>
+                                </TouchableOpacity>
+                                <View style={styles.LineView} />
+
+                                <TouchableOpacity onPress={this.selectOption.bind(this, "option_4", quiz[counter].option_4)}
+                                    style={[styles.aboutDiscrs, option_4 ? styles.activeOption : null]} >
+                                    <Text style={[styles.discriptionTextTitle2, option_4 ? styles.activeOptionText : null]} >{quiz[counter].option_4}</Text>
+                                </TouchableOpacity>
+                                <View style={styles.LineView} />
+                            </View>
+
+                            <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }} >
+                                <TouchableOpacity
+                                    onPress={this.nextQuiz.bind(this)}
+                                    style={{
+                                        backgroundColor: "#d81dc6",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        padding: wp("2%"),
+                                        width: wp("70%"),
+                                    }} >
+                                    <Text style={{ color: "#fff" }} >NEXT</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </Animated.View>
+                    }
+                    <Animated.View style={{ backgroundColor: "#fff", position: "absolute", top: hp("10%"), bottom: hp("10%"), left: wp("5%"), right: wp("5%"), opacity: opacity2, zIndex, borderRadius: 4, justifyContent: "center", alignItems: "center" }} >
+                        {console.log({ color: (passScore < score) ? "#d81dc6" : "red", fontSize: 17 })}
+                        <PercentageCircle
+                            radius={90}
+                            percent={score}
+                            borderWidth={10}
+                            textStyle={{ color: "#d81dc6", fontSize: 17 }}
+                            color={"#d81dc6"}>
+                        </PercentageCircle>
+                        <View style={{ marginTop: wp("10%") }} >
+                            {(passScore < score) ?
+                                <Text style={{ fontSize: 20, color: "#d81dc6" }}>
+                                    You have been pass
+                                </Text>
+                                :
+                                <Text style={{ fontSize: 20, color: "red" }} >
+                                    You have been Fail
+                                </Text>}
                         </View>
-                        <View style={styles.LineView} />
-                        <View style={styles.aboutDiscrs} >
-                            {/* <Text style={styles.discriptionTextTitle} >Time</Text> */}
-                            <Text style={styles.discriptionTextTitle2} >{time}</Text>
-                        </View>
-                        <View style={styles.LineView} />
-                        <View style={styles.aboutDiscrs} >
-                            {/* <Text style={styles.discriptionTextTitle} >Passing Marks</Text> */}
-                            <Text style={styles.discriptionTextTitle2} >{passingMarks}</Text>
-                        </View>
-                        <View style={styles.LineView} />
-                    </View>
-                    <View style={{justifyContent:"center", alignItems:"center", flex:1}} >
-                        <TouchableOpacity style={{backgroundColor:"#d81dc6", justifyContent:"center", alignItems:"center", padding:wp("1.5%"), width:wp("40%")}} >
-                          <Text style={{color:"#fff"}} >START</Text>
-                        </TouchableOpacity>
-                    </View>
+                    </Animated.View>
                 </LinearGradient>
             </Transition>
         )
@@ -302,14 +336,16 @@ class StartingQuiz extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        // alignItems:"center"
+
     },
 
     content: {
         // flex: 1,
-        height:hp("70%"),
+        height: hp("70%"),
         margin: 10,
         // backgroundColor:"green",
-        justifyContent:"center"
+        // justifyContent: "center"
     },
     discriptionContainer: {
         backgroundColor: "#fff",
@@ -345,14 +381,26 @@ const styles = StyleSheet.create({
         color: "#d81dc6",
         fontSize: 17,
         textAlign: "center"
-    }
+    },
+    activeOption: {
+        padding: wp("1.1%"),
+        borderColor: "#530bb0",
+        // borderColor: "#fff",
+        borderWidth: 2,
+        // backgroundColor: "#d81dc6"
+        backgroundColor: "#fff"
+    },
+    activeOptionText: { color: "#530bb0", fontWeight: "400" }
 })
 
 
 
 const mapStateToProp = (state) => {
     return ({
-        quiz_Discrp: state.root
+        quiz_Question: state.root,
+        quiz_Discription: state.root,
+        currentUser: state.root,
+
     });
 };
 const mapDispatchToProp = (dispatch) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Image, FlatList, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Transition } from "react-navigation-fluid-transitions"
 import LinearGradient from 'react-native-linear-gradient';
 import {
@@ -16,17 +16,16 @@ const { width, height } = Dimensions.get("window")
 
 
 
- class QuizList extends Component {
+class QuizList extends Component {
     componentDidMount() {
-        axios.get("http://192.168.100.101:8000/quizList")
-        .then((res) => {
-            console.log(res.data)
-            this.props.QuizListAction(res.data)
+        axios.get("http://192.168.100.113:8000/quizList")
+            .then((res) => {
+                console.log(res.data)
+                this.props.QuizListAction(res.data)
             }).catch((err) => {
                 console.log(err, "___________________")
             })
     }
-
 
     joinQuiz(data) {
         console.log(data)
@@ -36,9 +35,12 @@ const { width, height } = Dimensions.get("window")
 
 
     render() {
+
+        console.log(this.props.currentUser.currentUser)
+
         return (
             <Transition appear='horizontal' disappear='horizontal' >
-                <View style={{ flex: 1, backgroundColor:"#fff" }} >
+                <View style={{ flex: 1, backgroundColor: "#fff" }} >
                     <LinearGradient
                         start={{ x: 2, y: 2 }}
                         locations={[0, 1, 1]}
@@ -103,8 +105,8 @@ const styles = StyleSheet.create({
         borderLeftWidth: 3,
         borderLeftColor: "#d81dc6",
         marginBottom: 5,
-        borderBottomColor:"#d81dc6",
-        borderBottomWidth:1,
+        borderBottomColor: "#d81dc6",
+        borderBottomWidth: 1,
     },
     quizListContaint: {
         flex: 1,
@@ -145,7 +147,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProp = (state) => {
     return ({
-        quiz_List: state.root
+        quiz_List: state.root,
+        currentUser: state.root
     });
 };
 const mapDispatchToProp = (dispatch) => {
@@ -156,7 +159,7 @@ const mapDispatchToProp = (dispatch) => {
         AboutQuizAction: (data) => {
             dispatch(AboutQuizAction(data))
         },
-        
+
     };
 };
 

@@ -17,12 +17,42 @@ import {
 } from 'react-native-responsive-screen';
 import { Container, Header, Content, ListItem, Radio, Right, Left } from 'native-base';
 import { connect } from "react-redux"
+import axios from "axios"
+import { QuizQuesAction } from "../../store/action/action"
 
 
 class QuizDiscription extends Component {
 
-    start_Quiz(){
-        this.props.navigation.navigate("StartingQuiz")
+    start_Quiz() {
+        const id = this.props.quiz_Discrp.aboutQuiz.id
+        axios.get(`http://192.168.100.113:8000/getQuestion`)
+            .then((res) => {
+                for (var i = 0; i < res.data.length; i++) { 
+                    if (id == res.data[i]._id) {
+                        this.props.QuizQuesAction(res.data[i].quizArr.quizArr)
+                        this.props.navigation.navigate("StartingQuiz")
+                    }
+                }
+            }).catch((err) => {
+                console.log(err, "___________________")
+            })
+
+        // fetch("http:///192.168.0.103:8000/getQuestion",
+        //     {
+        //         method: 'GET',
+        //         // body: JSON.stringify(id),
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json',
+        //             id
+        //         }
+        //     })
+        //     .then((suc) => {
+        //         console.log(suc, "suc")
+        //     })
+        //     .catch((fail) => { console.log(fail, "Fail") })
+
+
     }
 
 
@@ -75,9 +105,9 @@ class QuizDiscription extends Component {
                         </View>
                         <View style={styles.LineView} />
                     </View>
-                    <View style={{justifyContent:"center", alignItems:"center", flex:1}} >
-                        <TouchableOpacity onPress={this.start_Quiz.bind(this)} style={{backgroundColor:"#d81dc6", justifyContent:"center", alignItems:"center", padding:wp("1.5%"), width:wp("40%")}} >
-                          <Text style={{color:"#fff"}} >START</Text>
+                    <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }} >
+                        <TouchableOpacity onPress={this.start_Quiz.bind(this)} style={{ backgroundColor: "#d81dc6", justifyContent: "center", alignItems: "center", padding: wp("1.5%"), width: wp("40%") }} >
+                            <Text style={{ color: "#fff" }} >START</Text>
                         </TouchableOpacity>
                     </View>
                 </LinearGradient>
@@ -97,10 +127,10 @@ const styles = StyleSheet.create({
 
     content: {
         // flex: 1,
-        height:hp("70%"),
+        height: hp("70%"),
         margin: 10,
         // backgroundColor:"green",
-        justifyContent:"center"
+        justifyContent: "center"
     },
     discriptionContainer: {
         backgroundColor: "#fff",
@@ -148,9 +178,9 @@ const mapStateToProp = (state) => {
 };
 const mapDispatchToProp = (dispatch) => {
     return {
-        // QuizListAction: (data) => {
-        //     dispatch(QuizListAction(data))
-        // },
+        QuizQuesAction: (data) => {
+            dispatch(QuizQuesAction(data))
+        },
     };
 };
 

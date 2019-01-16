@@ -110,9 +110,13 @@ router.post("/SignIn", (req, res) => {
                     })
                 }
                 if (result) {
-                    console.log(result)
+                    console.log("USER__________________",user[0])
+                    console.log(result, "------------------")
+                    // res.send(user[0])
+
                     res.status(200).json({
                         message: "Login Successful",
+                        user: user[0]
                     })
                 }
                 // res.status(401).json({
@@ -170,6 +174,7 @@ router.post("/createQuiz", (req, res) => {
         aboutQuiz: req.body.aboutQuiz,
         quizArr: req.body.quizArr,
     })
+    console.log(quiz, "QUIZ")
     quiz.save((success) => {
         console.log("Quiz Created Successfuly");
     })
@@ -178,9 +183,9 @@ router.post("/createQuiz", (req, res) => {
 
 
 router.get("/quizList", (req, res) => {
-    console.log("", res)
+    // console.log("", res)
     Quiz.find((err, succ) => {
-        console.log(succ)
+        // console.log(succ)
         if (succ) {
             let arr = []
             for (let i = 0; i < succ.length; i++) {
@@ -201,10 +206,21 @@ router.get("/quizList", (req, res) => {
 
 
 
+// router.get("/getQuestion", (req, res) => {
+//     console.log(req.headers.id,"____________________________")
+//     Quiz.findOne({ _id: req.headers.id }, (err, success) => {
+//         // console.log("===",success,"===")
+//             res.send(success)
+//     })
+// })
+
+
+
 router.get("/getQuestion", (req, res) => {
-    Quiz.findOne({ _id: req.body.id }, (err, success) => {
-        console.log("===",success.quizArr,"===")
-            res.send(success)
+    console.log(req, "____________________________")
+    Quiz.find((err, success) => {
+        console.log("===", success, "===")
+        res.send(success)
     })
 })
 

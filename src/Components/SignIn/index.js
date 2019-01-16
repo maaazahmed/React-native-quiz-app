@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, AsyncStorage } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {
     widthPercentageToDP as wp,
@@ -7,11 +7,12 @@ import {
 } from 'react-native-responsive-screen';
 import Icon from "react-native-vector-icons/FontAwesome"
 import { Transition } from "react-navigation-fluid-transitions"
-
+import { connect } from "react-redux"
+import { currentUserAction } from "../../store/action/action"
 
 
 const { width, height } = Dimensions.get("window")
-export default class SignInComponent extends Component {
+class SignInComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -29,7 +30,7 @@ export default class SignInComponent extends Component {
             password,
         }
         if (email !== "" && password !== "") {
-            fetch('http://192.168.8.100:8000/SignIn', {
+            fetch('http://192.168.100.113:8000/SignIn', {
                 method: 'POST',
                 body: JSON.stringify(obj),
                 headers: {
@@ -38,8 +39,15 @@ export default class SignInComponent extends Component {
                 },
             }).then((a) => {
                 var message = JSON.parse(a._bodyInit)
+                const currentUser = message.user;
+                // console.log(currentUser,"currentUserAction")
                 if (message.message === "Login Successful") {
-                    this.props.navigation.navigate("QuizList")
+                    this.props.currentUserAction(currentUser)
+                    AsyncStorage.setItem("currentUser", JSON.stringify(currentUser)).then(() => {
+                        this.props.navigation.navigate("QuizList")
+                    }).catch(() => {
+                        console.log("Fail")
+                    })
                 }
                 else {
                     alert("Aouthtication failed try again")
@@ -56,6 +64,7 @@ export default class SignInComponent extends Component {
 
 
     render() {
+
         const {
             email,
             password,
@@ -290,3 +299,21 @@ const styles = StyleSheet.create({
     }
 
 });
+
+
+const mapStateToProp = (state) => {
+    return ({
+        // quiz_Question: state.root,
+        // quiz_Discription: state.root,
+    });
+};
+const mapDispatchToProp = (dispatch) => {
+    return {
+        currentUserAction: (data) => {
+            dispatch(currentUserAction(data))
+        },
+    };
+};
+
+
+export default connect(mapStateToProp, mapDispatchToProp)(SignInComponent)

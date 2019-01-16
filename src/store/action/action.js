@@ -12,15 +12,14 @@ export const AboutQuizAction = (data) => {
 }
 
 
-// export const QuizListAction = (data) => {
-//     console.log(data)
-//     return dispatch => {
-//         dispatch({
-//             type: ActionTypes.QUIZE_LIST,
-//             payload: (data)
-//         })
-//     }
-// }
+export const QuizQuesAction = (data) => {
+    return dispatch => {
+        dispatch({
+            type: ActionTypes.QUIZE_QUESTION,
+            payload: data
+        })
+    }
+}
 
 
 
@@ -28,6 +27,18 @@ export const QuizListAction = (data) => {
     return dispatch => {
         dispatch({
             type: ActionTypes.QUIZE_LIST,
+            payload: data
+
+        })
+    }
+
+}
+
+
+export const currentUserAction = (data) => {
+    return dispatch => {
+        dispatch({
+            type: ActionTypes.CURRENT_USER_KEY,
             payload: data
 
         })

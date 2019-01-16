@@ -1,6 +1,8 @@
 const ActionTypes = {
    ABOUT_QUIZ:"ABOUT_QUIZ",
-   QUIZE_LIST:"QUIZE_LIST"
+   QUIZE_LIST:"QUIZE_LIST",
+   QUIZE_QUESTION:"QUIZE_QUESTION",
+   CURRENT_USER_KEY:"CURRENT_USER_KEY"
 }
 
 export default ActionTypes
