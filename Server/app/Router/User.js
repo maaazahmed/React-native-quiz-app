@@ -187,17 +187,22 @@ router.get("/quizList", (req, res) => {
     // console.log("", res)
     Quiz.find((err, succ) => {
         // console.log(succ)
-        if (succ) {
-            let arr = []
-            for (let i = 0; i < succ.length; i++) {
-                const element = succ[i];
-                arr.push({ id: element._id, aboutQuiz: element.aboutQuiz })
+        joinedQuiz.find((error, suc) => {
+            // console.log("===", suc, "===")
+            if (succ) {
+                let arr = []
+                for (let i = 0; i < succ.length; i++) {
+                    const element = succ[i];
+                    suc.find((eve)=>{console.log(eve.quizId,"***************************************", element._id)})
+                    if(eve.quizId)
+                    arr.push({ id: element._id, aboutQuiz: element.aboutQuiz })
+                }
+                res.send(arr)
             }
-            res.send(arr)
-        }
-        else {
-            res.send(err)
-        }
+            else {
+                res.send(err)
+            }
+        })
     })
 })
 
@@ -220,9 +225,6 @@ router.get("/quizList", (req, res) => {
 router.get("/getQuestion", (req, res) => {
     // console.log(req, "____________________________")
     Quiz.find((err, success) => {
-        joined.find((error, suc) => {
-            console.log("===", suc, "===")
-        })
         res.send(success);
     })
 })
