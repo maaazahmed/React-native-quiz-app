@@ -220,7 +220,9 @@ router.get("/quizList", (req, res) => {
 router.get("/getQuestion", (req, res) => {
     // console.log(req, "____________________________")
     Quiz.find((err, success) => {
-        console.log("===", success, "===")
+        joined.find((error, suc) => {
+            console.log("===", suc, "===")
+        })
         res.send(success);
     })
 })
@@ -235,7 +237,9 @@ router.post("/joingedQuestions", (req, res) => {
         username: req.body.username,
         quizId: req.body.quizId
     })
-    console.log(joined)
+    joined.save(() => {
+        console.log(joined)
+    })
 
     // Quiz.findOne({ _id: req.headers.id }, (err, success) => {
     //     // console.log("===",success,"===")
