@@ -10,17 +10,17 @@ import {currentUserAction} from "../../store/action/action"
 class SplashScreen extends Component {
     componentDidMount(){
         AsyncStorage.getItem("currentUser", (fail, success) => {
-            if (fail) {
+            if (success === null) {
+                // console.log(fail, "FAIL")
                 this.props.navigation.navigate("SignInComponent")
             }
             else {
                 // console.log(JSON.parse(success), "SplashScreen")
+                console.log(success,"-----------")
                 this.props.currentUserAction(JSON.parse(success))
                 this.props.navigation.navigate("QuizList")
             }
         })
-        this.props.navigation.navigate("SignInComponent")
-
     }
     render() {
         return (

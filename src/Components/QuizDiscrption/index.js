@@ -25,7 +25,7 @@ class QuizDiscription extends Component {
 
     start_Quiz() {
         const id = this.props.quiz_Discrp.aboutQuiz.id
-        axios.get(`http://192.168.100.113:8000/getQuestion`)
+        axios.get(`http://192.168.100.20:8000/getQuestion`)
             .then((res) => {
                 for (var i = 0; i < res.data.length; i++) { 
                     if (id == res.data[i]._id) {

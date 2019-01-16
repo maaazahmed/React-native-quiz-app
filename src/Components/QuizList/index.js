@@ -18,7 +18,7 @@ const { width, height } = Dimensions.get("window")
 
 class QuizList extends Component {
     componentDidMount() {
-        axios.get("http://192.168.100.113:8000/quizList")
+        axios.get("http://192.168.100.20:8000/quizList")
             .then((res) => {
                 console.log(res.data)
                 this.props.QuizListAction(res.data)

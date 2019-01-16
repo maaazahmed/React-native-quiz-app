@@ -18,6 +18,7 @@ app.use("/SignIn", router);
 app.use("/quizList", router);
 app.use("/createAdmin", router);
 app.use("/getQuestion", router);
+app.use("/joingedQuestions", router);
 
 
 app.listen(app.get("port"), (err, succ) => {

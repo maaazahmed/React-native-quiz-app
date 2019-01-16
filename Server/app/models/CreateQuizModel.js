@@ -8,3 +8,4 @@ const quiz = mongoose.Schema({
 
 var quizSchema = mongoose.model("Quize", quiz)
 module.exports = quizSchema
+

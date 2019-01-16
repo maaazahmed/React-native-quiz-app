@@ -5,6 +5,7 @@ var createAdmin = require("../models/CreateAdminModal")
 var Quiz = require("../models/CreateQuizModel")
 var bcrypt = require("bcrypt");
 var mongoose = require("mongoose")
+var joinedQuiz = require("../models/JoinedQuizModal")
 mongoose.connect("mongodb://quizapp:maaz1234@ds227664.mlab.com:27664/quiz_data");
 
 
@@ -110,7 +111,7 @@ router.post("/SignIn", (req, res) => {
                     })
                 }
                 if (result) {
-                    console.log("USER__________________",user[0])
+                    console.log("USER__________________", user[0])
                     console.log(result, "------------------")
                     // res.send(user[0])
 
@@ -217,12 +218,32 @@ router.get("/quizList", (req, res) => {
 
 
 router.get("/getQuestion", (req, res) => {
-    console.log(req, "____________________________")
+    // console.log(req, "____________________________")
     Quiz.find((err, success) => {
         console.log("===", success, "===")
-        res.send(success)
+        res.send(success);
     })
 })
+
+
+
+router.post("/joingedQuestions", (req, res) => {
+    const joined = new joinedQuiz({
+        _id: new mongoose.Types.ObjectId(),
+        userId: req.body.userId,
+        email: req.body.email,
+        username: req.body.username,
+        quizId: req.body.quizId
+    })
+    console.log(joined)
+
+    // Quiz.findOne({ _id: req.headers.id }, (err, success) => {
+    //     // console.log("===",success,"===")
+    //         res.send(success)
+    // })
+})
+
+
 
 
 

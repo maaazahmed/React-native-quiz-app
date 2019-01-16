@@ -20,6 +20,7 @@ import { connect } from "react-redux"
 import TimerMachine from 'react-timer-machine'
 import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
 import PercentageCircle from 'react-native-percentage-circle';
+import axios from "axios"
 
 
 
@@ -109,7 +110,17 @@ class StartingQuiz extends Component {
 
     nextQuiz() {
         const currentUser = this.props.currentUser.currentUser;
-        console.log(currentUser,"curren------------------tUser")
+        const currentQuiz = this.props.quiz_Discription.aboutQuiz
+
+        const joinedObj = {
+            userId: currentUser._id,
+            email: currentUser.email,
+            username: currentUser.email,
+            quizId: currentQuiz.id
+        }
+
+
+
         const { counter, slideLeft, opacity, selectedOption, markofaQuistion, incrementerMarcks } = this.state
         const quiz = this.props.quiz_Question.quizQuestions
         if (quiz.length - 1 > counter) {
@@ -173,7 +184,14 @@ class StartingQuiz extends Component {
                     toValue: 1,
                     duration: 100,
                 }).start(() => {
-         
+                  console.log(joinedObj)
+                    axios.post("http://192.168.100.20:8000/joingedQuestions",joinedObj)
+                        .then((res) => {
+                            console.log(res)
+                        }).catch((err) => {
+                            console.log(err, "___________________")
+                        })
+
                 })
             }, 3000)
         }
