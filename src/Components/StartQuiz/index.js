@@ -185,7 +185,7 @@ class StartingQuiz extends Component {
                     duration: 100,
                 }).start(() => {
                   console.log(joinedObj)
-                    axios.post("http://192.168.100.20:8000/joingedQuestions",joinedObj)
+                    axios.post("http://192.168.100.35:8000/joingedQuestions",joinedObj)
                         .then((res) => {
                             console.log(res)
                         }).catch((err) => {

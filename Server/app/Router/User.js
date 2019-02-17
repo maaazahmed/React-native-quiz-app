@@ -187,22 +187,17 @@ router.get("/quizList", (req, res) => {
     // console.log("", res)
     Quiz.find((err, succ) => {
         // console.log(succ)
-        joinedQuiz.find((error, suc) => {
-            // console.log("===", suc, "===")
-            if (succ) {
-                let arr = []
-                for (let i = 0; i < succ.length; i++) {
-                    const element = succ[i];
-                    suc.find((eve)=>{console.log(eve.quizId,"***************************************", element._id)})
-                    if(eve.quizId)
-                    arr.push({ id: element._id, aboutQuiz: element.aboutQuiz })
-                }
-                res.send(arr)
+        if (succ) {
+            let arr = []
+            for (let i = 0; i < succ.length; i++) {
+                const element = succ[i];
+                arr.push({ id: element._id, aboutQuiz: element.aboutQuiz })
             }
-            else {
-                res.send(err)
-            }
-        })
+            res.send(arr)
+        }
+        else {
+            res.send(err)
+        }
     })
 })
 
@@ -232,21 +227,54 @@ router.get("/getQuestion", (req, res) => {
 
 
 router.post("/joingedQuestions", (req, res) => {
-    const joined = new joinedQuiz({
-        _id: new mongoose.Types.ObjectId(),
-        userId: req.body.userId,
-        email: req.body.email,
-        username: req.body.username,
-        quizId: req.body.quizId
-    })
-    joined.save(() => {
-        console.log(joined)
-    })
-
-    // Quiz.findOne({ _id: req.headers.id }, (err, success) => {
-    //     // console.log("===",success,"===")
-    //         res.send(success)
+    // const joined = new joinedQuiz({
+    //     _id: new mongoose.Types.ObjectId(),
+    //     userId: req.body.userId,
+    //     email: req.body.email,
+    //     username: req.body.username,
+    //     quizId: req.body.quizId
     // })
+    Quiz.findOne({ _id: req.body.quizId }, (err, success) => {
+
+
+        const joined = {
+            userId: req.body.userId,
+            email: req.body.email,
+            username: req.body.username,
+            quizId: req.body.quizId
+        }
+        if (success.joinedQuiz == undefined) {
+            let arr = [joined]
+            arr.push()
+            
+            const quiz = new Quiz({
+                _id: req.body.quizId,
+                aboutQuiz: success.aboutQuiz,
+                quizArr: success.quizArr,
+                joinedQuiz: { arr }
+            })
+            console.log(success.joinedQuiz, "QUIZ")
+        }
+        
+
+        // Quiz.updateOne({ _id: req.body.quizId, joined }, { $set:  quiz  }, (err, suc) => {
+        //     console.log(err, "----", suc)
+        // })
+
+
+
+
+
+        // joined.save(() => {
+        //     console.log(joined)
+        // })
+        // joinedQuiz.find((error, suc) => {
+        //     // console.log("===", suc, "===")
+        // })
+
+        // console.log("===", success, "===")
+        // res.send(success)
+    })
 })
 
 
